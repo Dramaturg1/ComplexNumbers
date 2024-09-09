@@ -82,6 +82,8 @@ namespace ConsoleApp2
                 Console.WriteLine("2. Substraction");
                 Console.WriteLine("3. Multiplication");
                 Console.WriteLine("4. Division");
+                Console.WriteLine("5. Module");
+                Console.WriteLine("6. Argument");
                 Console.WriteLine("Q. Quit");
 
                 symb = Console.ReadLine();
@@ -117,10 +119,16 @@ namespace ConsoleApp2
                         num3 = num1 / num2;
                         Console.WriteLine("{0} / {1} = {2}", num1.Out(), num2.Out(), num3.Out());
                         break;
-                    case "6":
-                        Console.WriteLine("Enter a complex numbers:");
+                    case "5":
+                        Console.WriteLine("Enter a complex number:");
                         num1 = Parser(Console.ReadLine());
-                        Console.WriteLine("An argumnet of {0} is {1}", num1.Out(), num1.Ar);
+                        Console.WriteLine("The module of {0} is {1}", num1.Out(), num1.Module());
+                        break;
+                    case "6":
+                        Console.WriteLine("Enter a complex number:");
+                        num1 = Parser(Console.ReadLine());
+                        Console.WriteLine("The argumnet of {0} is {1}", num1.Out(), num1.Arg());
+                        break;
                     case "Q":
                         break;
                     case "q":
