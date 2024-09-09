@@ -46,14 +46,16 @@ namespace ConsoleApp2
             public static double Real(ComplexNumber a) => a.real;
             public static double Imag(ComplexNumber a) => a.imag;
 
-            public static void Out(ComplexNumber a)
+            public string Out()
             {
-                if (a.imag > 0)
-                    Console.WriteLine("{0}+{1}i", a.real, a.imag);
-                else if (a.imag == 0)
-                    Console.WriteLine(a.real);
+                string res = string.Empty;
+                if (this.imag > 0)
+                    res += this.real + '+' + this.imag + 'i';
+                else if (this.imag == 0)
+                    res += this.real;
                 else
-                    Console.WriteLine("{0}{1}i", a.real, a.imag);
+                    res += this.real + this.imag + 'i';
+                return res;
             }
         }
 
@@ -72,6 +74,7 @@ namespace ConsoleApp2
         }
         static void Main(string[] args)
         {
+            string symb;
             do
             {
                 Console.WriteLine("Choose one of the options below:");
@@ -79,20 +82,51 @@ namespace ConsoleApp2
                 Console.WriteLine("2. Substraction");
                 Console.WriteLine("3. Multiplication");
                 Console.WriteLine("4. Division");
-                Console.WriteLine("5. Quit");
+                Console.WriteLine("Q. Quit");
 
-                string symb = Console.ReadLine();
+                symb = Console.ReadLine();
+                ComplexNumber num1, num2, num3;
 
                 switch(symb)
                 {
                     case "1":
                         Console.WriteLine("Enter 2 complex numbers:");
-                        
-
+                        num1 = Parser(Console.ReadLine());
+                        num2 = Parser(Console.ReadLine());
+                        num3 = num1 + num2;
+                        Console.WriteLine("{0} + {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        break;
+                    case "2":
+                        Console.WriteLine("Enter 2 complex numbers:");
+                        num1 = Parser(Console.ReadLine());
+                        num2 = Parser(Console.ReadLine());
+                        num3 = num1 - num2;
+                        Console.WriteLine("{0} - {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        break;
+                    case "3":
+                        Console.WriteLine("Enter 2 complex numbers:");
+                        num1 = Parser(Console.ReadLine());
+                        num2 = Parser(Console.ReadLine());
+                        num3 = num1 * num2;
+                        Console.WriteLine("{0} * {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        break;
+                    case "4":
+                        Console.WriteLine("Enter 2 complex numbers:");
+                        num1 = Parser(Console.ReadLine());
+                        num2 = Parser(Console.ReadLine());
+                        num3 = num1 / num2;
+                        Console.WriteLine("{0} / {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        break;
+                    case "Q":
+                        break;
+                    case "q":
+                        break;
+                    default:
+                        throw new Exception("Uknown command");
                 }
 
                 
-            }
+            } while (symb != "Q" || symb != "q");
         }
     }
 }
