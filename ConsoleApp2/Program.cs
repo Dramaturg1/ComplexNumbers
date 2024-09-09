@@ -30,16 +30,16 @@ namespace ConsoleApp2
 
             public static ComplexNumber operator /(ComplexNumber a, ComplexNumber b) => new ComplexNumber((a.real * b.real + a.imag * b.imag) / (b.real * b.real + b.imag * b.imag), (a.imag * b.real + a.real * b.imag) / (b.real * b.real + b.imag * b.imag));
 
-            public static double Module(ComplexNumber a) => Math.Sqrt(a.real * a.real + a.imag * a.imag);
+            public double Module() => Math.Sqrt(this.real * this.real + this.imag * this.imag);
 
-            public static double Arg(ComplexNumber a)
+            public double Arg()
             {
-                if (a.real > 0 && a.imag >= 0) return Math.Atan(a.imag / a.real);
-                if (a.real < 0 && a.imag >= 0) return Math.PI - Math.Atan(Math.Abs(a.imag / a.real));
-                if (a.real < 0 && a.imag < 0) return Math.PI + Math.Atan(Math.Abs(a.imag / a.real));
-                if (a.real > 0 && a.imag < 0) return 2*Math.PI - Math.Atan(Math.Abs(a.imag / a.real));
-                if (a.real == 0 && a.imag > 0) return Math.PI / 2;
-                if (a.real == 0 && a.imag < 0) return 3 * Math.PI / 2;
+                if (this.real > 0 && this.imag >= 0) return Math.Atan(this.imag / this.real);
+                if (this.real < 0 && this.imag >= 0) return Math.PI - Math.Atan(Math.Abs(this.imag / this.real));
+                if (this.real < 0 && this.imag < 0) return Math.PI + Math.Atan(Math.Abs(this.imag / this.real));
+                if (this.real > 0 && this.imag < 0) return 2*Math.PI - Math.Atan(Math.Abs(this.imag / this.real));
+                if (this.real == 0 && this.imag > 0) return Math.PI / 2;
+                if (this.real == 0 && this.imag < 0) return 3 * Math.PI / 2;
                 return double.NaN;
             }
 
@@ -50,11 +50,11 @@ namespace ConsoleApp2
             {
                 string res = string.Empty;
                 if (this.imag > 0)
-                    res += this.real + '+' + this.imag + 'i';
+                    res += this.real.ToString() + '+' + this.imag.ToString() + 'i';
                 else if (this.imag == 0)
-                    res += this.real;
+                    res += this.real.ToString();
                 else
-                    res += this.real + this.imag + 'i';
+                    res += this.real.ToString() + this.imag.ToString() + 'i';
                 return res;
             }
         }
@@ -94,29 +94,33 @@ namespace ConsoleApp2
                         num1 = Parser(Console.ReadLine());
                         num2 = Parser(Console.ReadLine());
                         num3 = num1 + num2;
-                        Console.WriteLine("{0} + {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        Console.WriteLine("{0} + {1} = {2}", num1.Out(), num2.Out(), num3.Out());
                         break;
                     case "2":
                         Console.WriteLine("Enter 2 complex numbers:");
                         num1 = Parser(Console.ReadLine());
                         num2 = Parser(Console.ReadLine());
                         num3 = num1 - num2;
-                        Console.WriteLine("{0} - {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        Console.WriteLine("{0} - {1} = {2}", num1.Out(), num2.Out(), num3.Out());
                         break;
                     case "3":
                         Console.WriteLine("Enter 2 complex numbers:");
                         num1 = Parser(Console.ReadLine());
                         num2 = Parser(Console.ReadLine());
                         num3 = num1 * num2;
-                        Console.WriteLine("{0} * {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        Console.WriteLine("{0} * {1} = {2}", num1.Out(), num2.Out(), num3.Out());
                         break;
                     case "4":
                         Console.WriteLine("Enter 2 complex numbers:");
                         num1 = Parser(Console.ReadLine());
                         num2 = Parser(Console.ReadLine());
                         num3 = num1 / num2;
-                        Console.WriteLine("{0} / {1} = {3}", num1.Out(), num2.Out(), num3.Out());
+                        Console.WriteLine("{0} / {1} = {2}", num1.Out(), num2.Out(), num3.Out());
                         break;
+                    case "6":
+                        Console.WriteLine("Enter a complex numbers:");
+                        num1 = Parser(Console.ReadLine());
+                        Console.WriteLine("An argumnet of {0} is {1}", num1.Out(), num1.Ar);
                     case "Q":
                         break;
                     case "q":
@@ -126,7 +130,7 @@ namespace ConsoleApp2
                 }
 
                 
-            } while (symb != "Q" || symb != "q");
+            } while (symb != "Q" && symb != "q");
         }
     }
 }
