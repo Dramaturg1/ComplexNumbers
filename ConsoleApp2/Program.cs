@@ -41,6 +41,19 @@ namespace ConsoleApp2
                 if (a.real == 0 && a.imag < 0) return 3 * Math.PI / 2;
                 return double.NaN;
             }
+
+            public static double Real(ComplexNumber a) => a.real;
+            public static double Imag(ComplexNumber a) => a.imag;
+
+            public static void Out(ComplexNumber a)
+            {
+                if (a.imag > 0)
+                    Console.WriteLine("{0}+{1}i", a.real, a.imag);
+                else if (a.imag == 0)
+                    Console.WriteLine(a.real);
+                else
+                    Console.WriteLine("{0}{1}i", a.real, a.imag);
+            }
         }
         static void Main(string[] args)
         {
