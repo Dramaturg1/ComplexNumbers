@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp2
 {
     internal class Program
     {
-        class ComplexNumber
+        public class ComplexNumber
         {
             private readonly double real;
             private readonly double imag;
-            ComplexNumber(double real, double imag)
+            public ComplexNumber(double real, double imag)
             {
                 this.real = real;
                 this.imag = imag;
@@ -55,8 +56,43 @@ namespace ConsoleApp2
                     Console.WriteLine("{0}{1}i", a.real, a.imag);
             }
         }
+
+        public static ComplexNumber Parser(string input)
+        {
+            var pattern = @"(?<real>[-+]?\d+)(?<imag>[-+]\d+)i";
+            var match = Regex.Match(input, pattern);
+            if (!match.Success)
+            {
+                throw new FormatException("The string has an incorrect complex number statement");
+            }
+            double real = double.Parse(match.Groups["real"].Value);
+            double imag = double.Parse(match.Groups["imag"].Value);
+            return new ComplexNumber(real, imag);
+            
+        }
         static void Main(string[] args)
         {
+            do
+            {
+                Console.WriteLine("Choose one of the options below:");
+                Console.WriteLine("1. Addition");
+                Console.WriteLine("2. Substraction");
+                Console.WriteLine("3. Multiplication");
+                Console.WriteLine("4. Division");
+                Console.WriteLine("5. Quit");
+
+                string symb = Console.ReadLine();
+
+                switch(symb)
+                {
+                    case "1":
+                        Console.WriteLine("Enter 2 complex numbers:");
+                        
+
+                }
+
+                
+            }
         }
     }
 }
